@@ -1,0 +1,42 @@
+<div class="container">
+
+  <h1>Premium Calculator</h1>
+
+  <div class="col-md-6">
+    <h2>Fill all the fields</h2>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" name="name" id="name" class="form-group" required [(ngModel)]="clientData.name">
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="age">Age</label>
+      <input type="number" name="age" id="age" class="form-group" required [(ngModel)]="clientData.age" (change)="calculatePremium()">
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="birthDate">Birth Date</label>
+      <input type="date" name="birthDate" id="birthDate" class="form-group" required [(ngModel)]="clientData.birthDate" (change)="calculatePremium()">
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="occupation">Occupation</label>
+      <select name="occupation" id="occupation" class="form-group" required [(ngModel)]="clientData.occupation" (change)="calculatePremium()">
+        <option *ngFor="let occupation of occupations" [value]="occupation.value">{{occupation.name}}</option>
+      </select>
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="deathSumInsured">Death Sum Insured</label>
+      <input type="text" name="deathSumInsured" id="deathSumInsured" class="form-group" required (change)="calculatePremium()"
+        [(ngModel)]="clientData.deathSumInsured">
+    </div>
+    <br>
+  </div>
+
+  <div class="col-md-6" *ngIf="showResult">
+    <h2>Calculated Premium is {{this.response$ | async}}</h2>
+
+  </div>
+
+</div>
